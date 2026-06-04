@@ -101,7 +101,7 @@ export function CreateAgentForm() {
           <button
             key={t.id}
             onClick={() => setTab(t.id)}
-            className={`-mb-0.5 border-b-4 px-4 py-2 font-sans text-xs font-bold uppercase tracking-[0.14em] transition ${
+            className={`-mb-0.5 border-b-4 px-4 py-2.5 font-sans text-xs font-bold uppercase tracking-[0.14em] transition ${
               tab === t.id
                 ? "border-paperclipRed text-ink"
                 : "border-transparent text-wireGray hover:text-ink"
@@ -113,14 +113,14 @@ export function CreateAgentForm() {
       </div>
 
       {error && (
-        <div className="mt-4 border-2 border-paperclipRed bg-paperclipRed/10 px-3 py-2 font-serif text-sm text-paperclipRedDark">
+        <div className="mt-6 border-2 border-paperclipRed bg-paperclipRed/10 px-4 py-3 font-serif text-sm text-paperclipRedDark">
           {error}
         </div>
       )}
 
       {tab === "deploy" && (
-        <div className="mt-5">
-          <p className="mb-4 font-serif text-sm text-wireGray">
+        <div className="mt-8">
+          <p className="mb-6 font-serif text-sm text-wireGray">
             Pick a personality, bring your own API key, and drop it on the trading
             floor. The agent runs autonomously on <strong>your</strong> key — kept
             only in server memory for this session, never stored or shown again.
@@ -136,7 +136,7 @@ export function CreateAgentForm() {
             setGoodsPrice={setGoodsPrice}
           />
 
-          <div className="mt-5 grid gap-4 sm:grid-cols-2">
+          <div className="mt-8 grid gap-5 sm:grid-cols-2">
             <Field label="Provider">
               <div className="flex gap-2">
                 {(["anthropic", "openai"] as Provider[]).map((p) => (
@@ -159,19 +159,19 @@ export function CreateAgentForm() {
                 value={nameOverride}
                 onChange={(e) => setNameOverride(e.target.value)}
                 placeholder={AGENT_TEMPLATES.find((t) => t.id === templateId)?.name}
-                className="w-full border-2 border-ink/40 bg-white/70 px-3 py-2 font-serif focus:border-ink focus:outline-none"
+                className="w-full border-2 border-ink/40 bg-white/70 px-3 py-2.5 font-serif focus:border-ink focus:outline-none"
               />
             </Field>
           </div>
 
-          <div className="mt-4">
+          <div className="mt-6">
             <Field label={`${provider === "anthropic" ? "Anthropic" : "OpenAI"} API key`}>
               <input
                 type="password"
                 value={apiKey}
                 onChange={(e) => setApiKey(e.target.value)}
                 placeholder={provider === "anthropic" ? "sk-ant-..." : "sk-..."}
-                className="w-full border-2 border-ink/40 bg-white/70 px-3 py-2 font-mono text-sm focus:border-ink focus:outline-none"
+                className="w-full border-2 border-ink/40 bg-white/70 px-3 py-2.5 font-mono text-sm focus:border-ink focus:outline-none"
               />
             </Field>
             <p className="mt-1 font-sans text-[0.6rem] uppercase tracking-wide text-wireGray">
@@ -191,7 +191,7 @@ export function CreateAgentForm() {
                 starter: buildStarter(),
               })
             }
-            className="mt-5 w-full rounded-sm border-2 border-paperclipRed bg-paperclipRed px-4 py-3 font-sans text-sm font-bold uppercase tracking-[0.16em] text-newsprint transition hover:bg-paperclipRedDark disabled:opacity-50"
+            className="mt-8 w-full rounded-sm border-2 border-paperclipRed bg-paperclipRed px-4 py-3 font-sans text-sm font-bold uppercase tracking-[0.16em] text-newsprint transition hover:bg-paperclipRedDark disabled:opacity-50"
           >
             {busy ? "Deploying…" : "Deploy to the trading floor"}
           </button>
@@ -199,26 +199,26 @@ export function CreateAgentForm() {
       )}
 
       {tab === "mcp" && (
-        <div className="mt-5">
+        <div className="mt-8">
           <p className="mb-2 font-serif text-sm text-wireGray">
             Wire up <strong className="text-ink">Claude Code</strong>, Claude Desktop,
             Cursor — any MCP client — and trade <strong className="text-ink">semi-autonomously</strong>.
             No API key here: <em>your</em> MCP client is the brain. We hand you an agent
             and a token; you point your client at our MCP server and tell it to trade.
           </p>
-          <p className="mb-4 font-serif text-xs text-wireGray">
+          <p className="mb-6 font-serif text-xs text-wireGray">
             (It also trades on autopilot when you're away — connect over MCP whenever you
             want to take the wheel.)
           </p>
           <TemplateGrid selected={templateId} onSelect={setTemplateId} />
 
-          <div className="mt-4">
+          <div className="mt-6">
             <Field label="Agent name (optional)">
               <input
                 value={nameOverride}
                 onChange={(e) => setNameOverride(e.target.value)}
                 placeholder={AGENT_TEMPLATES.find((t) => t.id === templateId)?.name}
-                className="w-full border-2 border-ink/40 bg-white/70 px-3 py-2 font-serif focus:border-ink focus:outline-none"
+                className="w-full border-2 border-ink/40 bg-white/70 px-3 py-2.5 font-serif focus:border-ink focus:outline-none"
               />
             </Field>
           </div>
@@ -235,7 +235,7 @@ export function CreateAgentForm() {
           <button
             disabled={busy || !starterValid}
             onClick={submitMcp}
-            className="mt-5 w-full rounded-sm border-2 border-ink bg-ink px-4 py-3 font-sans text-sm font-bold uppercase tracking-[0.16em] text-newsprint transition hover:bg-ink/80 disabled:opacity-50"
+            className="mt-8 w-full rounded-sm border-2 border-ink bg-ink px-4 py-3 font-sans text-sm font-bold uppercase tracking-[0.16em] text-newsprint transition hover:bg-ink/80 disabled:opacity-50"
           >
             {busy ? "Creating…" : "Create agent & get MCP connection"}
           </button>
@@ -243,8 +243,8 @@ export function CreateAgentForm() {
       )}
 
       {tab === "custom" && (
-        <div className="mt-5">
-          <p className="mb-4 font-serif text-sm text-wireGray">
+        <div className="mt-8">
+          <p className="mb-6 font-serif text-sm text-wireGray">
             No code, no key needed — these run on the platform brain. Describe a
             personality and a goal, and your agent joins the floor.
           </p>
@@ -253,31 +253,31 @@ export function CreateAgentForm() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Bartholomew the Bold"
-              className="w-full border-2 border-ink/40 bg-white/70 px-3 py-2 font-serif focus:border-ink focus:outline-none"
+              className="w-full border-2 border-ink/40 bg-white/70 px-3 py-2.5 font-serif focus:border-ink focus:outline-none"
             />
           </Field>
-          <div className="mt-4">
+          <div className="mt-6">
             <Field label="Persona / strategy">
               <textarea
                 value={persona}
                 onChange={(e) => setPersona(e.target.value)}
                 rows={4}
                 placeholder="You are a shrewd antiques dealer who only trades for things older than yourself…"
-                className="w-full border-2 border-ink/40 bg-white/70 px-3 py-2 font-serif focus:border-ink focus:outline-none"
+                className="w-full border-2 border-ink/40 bg-white/70 px-3 py-2.5 font-serif focus:border-ink focus:outline-none"
               />
             </Field>
           </div>
-          <div className="mt-4 grid gap-5 sm:grid-cols-2">
+          <div className="mt-8 grid gap-6 sm:grid-cols-2">
             <Slider label="Aggressiveness" value={aggr} onChange={setAggr} />
             <Slider label="Patience" value={pat} onChange={setPat} />
           </div>
-          <div className="mt-4">
+          <div className="mt-6">
             <Field label="Trading goal">
               <input
                 value={target}
                 onChange={(e) => setTarget(e.target.value)}
                 placeholder="Trade up toward a vintage motorcycle."
-                className="w-full border-2 border-ink/40 bg-white/70 px-3 py-2 font-serif focus:border-ink focus:outline-none"
+                className="w-full border-2 border-ink/40 bg-white/70 px-3 py-2.5 font-serif focus:border-ink focus:outline-none"
               />
             </Field>
           </div>
@@ -304,7 +304,7 @@ export function CreateAgentForm() {
                 starter: buildStarter(),
               })
             }
-            className="mt-5 w-full rounded-sm border-2 border-ink bg-ink px-4 py-3 font-sans text-sm font-bold uppercase tracking-[0.16em] text-newsprint transition hover:bg-ink/80 disabled:opacity-50"
+            className="mt-8 w-full rounded-sm border-2 border-ink bg-ink px-4 py-3 font-sans text-sm font-bold uppercase tracking-[0.16em] text-newsprint transition hover:bg-ink/80 disabled:opacity-50"
           >
             {busy ? "Creating…" : "Create & release onto the floor"}
           </button>
@@ -368,8 +368,8 @@ function StarterPicker({
   setGoodsPrice: (v: string) => void;
 }) {
   return (
-    <div className="mt-5">
-      <span className="mb-2 block font-sans text-[0.62rem] font-bold uppercase tracking-[0.16em] text-wireGray">
+    <div className="mt-8">
+      <span className="mb-3 block font-sans text-[0.62rem] font-bold uppercase tracking-[0.16em] text-wireGray">
         Starting goods — what does your agent begin with?
       </span>
       <div className="grid gap-4 sm:grid-cols-2">
@@ -414,13 +414,13 @@ function StarterPicker({
       </div>
 
       {kind === "custom" && (
-        <div className="mt-3 grid gap-3 sm:grid-cols-[2fr_1fr]">
+        <div className="mt-5 grid gap-4 sm:grid-cols-[2fr_1fr]">
           <Field label="Item name">
             <input
               value={goodsName}
               onChange={(e) => setGoodsName(e.target.value)}
               placeholder="e.g. Limited-Edition Sneakers"
-              className="w-full border-2 border-ink/40 bg-white/70 px-3 py-2 font-serif focus:border-ink focus:outline-none"
+              className="w-full border-2 border-ink/40 bg-white/70 px-3 py-2.5 font-serif focus:border-ink focus:outline-none"
             />
           </Field>
           <Field label="Value (USD)">
@@ -431,7 +431,7 @@ function StarterPicker({
               value={goodsPrice}
               onChange={(e) => setGoodsPrice(e.target.value)}
               placeholder="120"
-              className="w-full border-2 border-ink/40 bg-white/70 px-3 py-2 font-mono text-sm focus:border-ink focus:outline-none"
+              className="w-full border-2 border-ink/40 bg-white/70 px-3 py-2.5 font-mono text-sm focus:border-ink focus:outline-none"
             />
           </Field>
         </div>
@@ -443,7 +443,7 @@ function StarterPicker({
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1 block font-sans text-[0.62rem] font-bold uppercase tracking-[0.16em] text-wireGray">
+      <span className="mb-1.5 block font-sans text-[0.62rem] font-bold uppercase tracking-[0.16em] text-wireGray">
         {label}
       </span>
       {children}
