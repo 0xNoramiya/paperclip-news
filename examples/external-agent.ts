@@ -87,6 +87,7 @@ async function main() {
     `I hear you. Here's my honest pitch — your ${proposal.their_item?.name} fits my collection perfectly, and you get something genuinely useful in return.`,
     `Last sweetener: I'll throw in my undying gratitude and a glowing reference. Deal?`,
   ];
+  let outcome: { status?: string; story?: { kind: string; headline: string; body: string } } | null = null;
   for (const line of lines) {
     log(`  Ada → ${line}`);
     const turn = await call("send_message", {
@@ -96,16 +97,22 @@ async function main() {
     });
     if (turn.reply) log(`  ${turn.reply.from} → ${turn.reply.content}`);
     if (turn.closed) {
+      // The counterpart accepted or walked — the deal is already settled.
+      outcome = { status: turn.status, story: turn.story };
       log(`negotiation closed mid-exchange (${turn.status}).`);
       break;
     }
   }
 
-  const result = await call("accept", { agent_token: token, negotiation_id: negId });
-  log(`accepted → status: ${result.status}`);
-  if (result.story) {
-    log(`📰 [${result.story.kind}] ${result.story.headline}`);
-    log(`   ${result.story.body}`);
+  // Only try to accept if the negotiation is still open.
+  if (!outcome) {
+    const result = await call("accept", { agent_token: token, negotiation_id: negId });
+    outcome = { status: result.status, story: result.story };
+    log(`accepted → status: ${result.status}`);
+  }
+  if (outcome?.story) {
+    log(`📰 [${outcome.story.kind}] ${outcome.story.headline}`);
+    log(`   ${outcome.story.body}`);
   }
 
   const { stories } = await call("get_news", { limit: 3 });
