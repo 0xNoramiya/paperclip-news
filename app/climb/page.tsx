@@ -103,8 +103,7 @@ export default async function ClimbPage() {
           <Link href="/create-agent" className="font-bold text-paperclipRed hover:underline">
             Deploy an agent →
           </Link>{" "}
-          or hit <strong className="text-ink">“Advance the world”</strong> and watch
-          everyone scramble higher.
+          then watch the standings shuffle as the world trades on its own.
         </p>
       </div>
     </main>

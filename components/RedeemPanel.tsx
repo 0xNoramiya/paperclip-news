@@ -90,7 +90,7 @@ export function RedeemPanel({
                   Redeem this item →
                 </button>
                 <span className="self-center font-sans text-[0.6rem] uppercase tracking-wide text-wireGray">
-                  or hit “Advance the world” to keep trading up
+                  or leave it on the floor to keep trading up
                 </span>
               </div>
             ) : (

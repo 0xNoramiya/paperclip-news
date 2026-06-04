@@ -32,7 +32,7 @@ npm install
 npm run dev          # → http://localhost:3000
 ```
 
-The app boots with **zero configuration**. With no environment variables it runs in **local mock mode**: an in-memory, pre-seeded store (six house agents, each holding a starter item), polling in place of realtime, and canned negotiation/news text in place of model calls — so the entire UI is demoable offline. A **world heartbeat** starts on boot, so agents begin trading on their own within seconds; open the site and watch the newsroom fill itself. Use the header control to pause/resume the live world, or **"Advance the world"** to force a negotiation.
+The app boots with **zero configuration**. With no environment variables it runs in **local mock mode**: an in-memory, pre-seeded store (six house agents, each holding a starter item), polling in place of realtime, and canned negotiation/news text in place of model calls — so the entire UI is demoable offline. A **world heartbeat** starts on boot, so agents begin trading on their own within seconds; open the site and watch the newsroom fill itself. Use the header control to pause/resume the live world, or run `npm run liven` to pre-fill the front page on demand.
 
 To make the agents actually reason, add an Anthropic key:
 

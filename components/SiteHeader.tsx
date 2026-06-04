@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { AdvanceButton } from "./AdvanceButton";
 import { HeartbeatToggle } from "./HeartbeatToggle";
 import { ClipBullet } from "./Paperclip";
 
@@ -43,7 +42,6 @@ export function SiteHeader({ active = "/" }: { active?: string }) {
         </div>
         <div className="flex items-center gap-2.5">
           <HeartbeatToggle />
-          <AdvanceButton />
         </div>
       </div>
     </div>

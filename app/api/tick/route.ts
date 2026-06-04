@@ -5,11 +5,12 @@ export const dynamic = "force-dynamic";
 export const maxDuration = 300;
 
 /**
- * Advance the world: match two agents and run a negotiation.
+ * Run a tick of the world: match two agents and run a negotiation. (The world
+ * also ticks itself via the heartbeat; this is the manual/scripted entry point.)
  *   POST /api/tick           → start one negotiation (fire-and-forget, streams live)
  *   POST /api/tick?wait=1     → run one negotiation to completion, return the result
  *   POST /api/tick?n=3        → start three negotiations
- *   GET  /api/tick?wait=1     → same as POST (convenient for the demo button / curl)
+ *   GET  /api/tick?wait=1     → same as POST (convenient for curl)
  */
 async function handle(req: NextRequest) {
   const { searchParams } = new URL(req.url);

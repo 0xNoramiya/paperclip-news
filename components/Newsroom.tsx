@@ -99,7 +99,7 @@ function Ticker({ stories }: { stories: StoryView[] }) {
   const heads =
     stories.length > 0
       ? stories.slice(0, 12).map((s) => s.story.headline)
-      : ["The wire is quiet — hit “Advance the world” to start a negotiation"];
+      : ["The wire is quiet — agents are warming up; the first deal will cross any moment…"];
   const run = [...heads, ...heads];
   // Pace the marquee so headlines are readable: longer when there are more.
   const durationS = Math.max(60, heads.length * 9);
@@ -224,9 +224,8 @@ function EmptyLead() {
       <Paperclip size={56} strokeWidth={2} className="-rotate-12 text-paperclipRed" />
       <h2 className="mt-4 font-masthead text-3xl font-black">The wire is quiet.</h2>
       <p className="mt-2 max-w-md font-serif text-wireGray">
-        No trades have crossed the desk yet. Hit{" "}
-        <span className="font-bold text-ink">“Advance the world”</span> up top to
-        match two agents and watch them haggle, live.
+        No trades have crossed the desk yet — the floor is warming up. The agents
+        trade on their own; the first deal will appear here any moment.
       </p>
     </article>
   );
@@ -289,12 +288,25 @@ function Editorial({ view }: { view: StoryView | null }) {
   );
 }
 
+const WIRE_PAGE_SIZE = 12;
+
 function WireSection({ items, now }: { items: StoryView[]; now: number }) {
+  const [page, setPage] = useState(0);
+  const ref = useRef<HTMLElement>(null);
+  const pageCount = Math.max(1, Math.ceil(items.length / WIRE_PAGE_SIZE));
+  const current = Math.min(page, pageCount - 1);
+  const slice = items.slice(current * WIRE_PAGE_SIZE, current * WIRE_PAGE_SIZE + WIRE_PAGE_SIZE);
+
+  const go = (p: number) => {
+    setPage(Math.max(0, Math.min(pageCount - 1, p)));
+    ref.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
   return (
-    <section className="pt-8">
+    <section ref={ref} className="scroll-mt-20 pt-8">
       <SectionHead>More from the Wire</SectionHead>
       <div className="mt-6 gap-8 sm:columns-2">
-        {items.map((v) => (
+        {slice.map((v) => (
           <article
             key={v.story.id}
             className="mb-6 break-inside-avoid border-b border-ink/15 pb-5"
@@ -325,6 +337,28 @@ function WireSection({ items, now }: { items: StoryView[]; now: number }) {
           </article>
         ))}
       </div>
+
+      {pageCount > 1 && (
+        <div className="mt-2 flex items-center justify-center gap-4 border-t-2 border-ink pt-4 font-sans text-[0.62rem] font-bold uppercase tracking-[0.16em]">
+          <button
+            onClick={() => go(current - 1)}
+            disabled={current === 0}
+            className="rounded-sm border-2 border-ink px-3 py-1.5 transition hover:bg-ink hover:text-newsprint disabled:cursor-not-allowed disabled:opacity-30"
+          >
+            ‹ Newer
+          </button>
+          <span className="text-wireGray">
+            Page {current + 1} of {pageCount}
+          </span>
+          <button
+            onClick={() => go(current + 1)}
+            disabled={current >= pageCount - 1}
+            className="rounded-sm border-2 border-ink px-3 py-1.5 transition hover:bg-ink hover:text-newsprint disabled:cursor-not-allowed disabled:opacity-30"
+          >
+            Older ›
+          </button>
+        </div>
+      )}
     </section>
   );
 }

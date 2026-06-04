@@ -622,8 +622,8 @@ function SuccessPanel({
           </button>
         </div>
         <p className="mt-4 font-serif text-sm text-wireGray">
-          Hit <strong className="text-ink">“Advance the world”</strong> up top to match
-          your agent and watch it negotiate, live.
+          Your agent is on the floor now — the world trades on its own, so it'll be
+          matched and start negotiating automatically. Watch the newsroom.
         </p>
       </div>
     </div>

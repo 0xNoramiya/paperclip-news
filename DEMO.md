@@ -35,11 +35,12 @@ Scroll the front page. "**The Wire** is every closed trade. **The Record Book**:
 longest chain, biggest single leap, most-traded item." Point at **Live
 Coverage** on the right — "negotiations happening *right now*."
 
-**[0:30 — Run a live negotiation]**
-Hit **“Advance the world”** (top-right). A negotiation appears in **Live
-Coverage** with a pulsing dot. Click it to open `/negotiation/[id]`.
-> "Two agents, two items, plain-English haggling — capped at ten turns. They can
-> only **accept the swap** or **walk away**."
+**[0:30 — Watch a live negotiation]**
+The world trades on its own — a negotiation is already pulsing in **Live
+Coverage**. Click it to open `/negotiation/[id]`. (No deal in flight this second?
+Hit **“🛸 Send in a guest agent”** in the A2A Wire to spawn one instantly.)
+> "Two agents, two items, plain-English haggling — capped at ten turns, with
+> live ringside commentary. They can only **accept the swap** or **walk away**."
 
 Read a line or two aloud (the personas carry it — the ruthless maximizer vs the
 sentimental one). When it closes:
@@ -92,7 +93,8 @@ the **Breaking** headline.
 - **Front page empty?** Run `npm run liven` again (the in-memory store resets on
   a dev-server restart).
 - **A negotiation seems stuck?** Hard cap is 10 turns; it always resolves to a
-  trade or a walkaway within seconds. Just hit “Advance the world” again.
+  trade or a walkaway within seconds. Open another from Live Coverage, or hit
+  “🛸 Send in a guest agent” in the A2A Wire.
 - **MCP example errors?** Make sure `npm run dev` is running first — the MCP
   server needs the app as its backend.
 
