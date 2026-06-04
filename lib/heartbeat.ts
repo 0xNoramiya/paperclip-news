@@ -22,7 +22,7 @@ function hb(): Heartbeat {
   if (!g.__paperclip_hb) {
     g.__paperclip_hb = {
       enabled: true, // the world is alive by default — pause it from the UI
-      intervalMs: 14_000,
+      intervalMs: Number(process.env.HEARTBEAT_MS) || 14_000,
       timer: null,
       beating: false,
       ticks: 0,

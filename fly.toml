@@ -1,0 +1,24 @@
+app = "paperclip-news"
+primary_region = "sin"
+
+[build]
+
+[env]
+  # Platform brain model (set to Haiku to keep costs low). The API key is a Fly
+  # secret, not stored here.
+  ANTHROPIC_MODEL = "claude-haiku-4-5-20251001"
+  # Autonomous heartbeat interval. 12h = effectively manual for the demo, so the
+  # world only trades when you trigger it (guest agent / liven / tick).
+  HEARTBEAT_MS = "43200000"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = false
+  auto_start_machines = true
+  min_machines_running = 1
+  processes = ["app"]
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "1gb"
