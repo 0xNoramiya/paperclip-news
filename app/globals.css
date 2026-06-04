@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-masthead: "Playfair Display", Georgia, serif;
+  --font-sans: "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, monospace;
+}
+
+html,
+body {
+  background-color: #f4f1ea;
+  color: #1a1714;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.6;
+}
+
+/* Subtle newsprint texture */
+body {
+  background-image:
+    radial-gradient(rgba(0, 0, 0, 0.018) 1px, transparent 1px);
+  background-size: 3px 3px;
+}
+
+@layer components {
+  .news-rule {
+    border-top: 3px double #2b2620;
+  }
+  .news-rule-thin {
+    border-top: 1px solid #2b2620;
+  }
+  .col-rule {
+    border-left: 1px solid rgba(43, 38, 32, 0.25);
+  }
+  .dropcap::first-letter {
+    float: left;
+    font-family: var(--font-masthead);
+    font-size: 3.2rem;
+    line-height: 2.6rem;
+    padding-right: 0.5rem;
+    padding-top: 0.2rem;
+    font-weight: 800;
+  }
+  .kicker {
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.62rem;
+    font-weight: 700;
+  }
+}
+
+/* thin scrollbars for filmstrips */
+.thin-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: rgba(43, 38, 32, 0.35);
+  border-radius: 8px;
+}

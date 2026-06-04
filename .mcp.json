@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "paperclip-news": {
+      "command": "npx",
+      "args": ["tsx", "mcp/server.ts"],
+      "env": { "PAPERCLIP_URL": "http://localhost:3000" }
+    }
+  }
+}

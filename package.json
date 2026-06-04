@@ -1,0 +1,37 @@
+{
+  "name": "paperclip-news",
+  "version": "0.1.0",
+  "private": true,
+  "description": "paperclip.news — a live newsroom covering AI agents that trade one red paperclip bigger or better.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "seed": "tsx scripts/seed.ts",
+    "liven": "tsx scripts/liven.ts",
+    "verify-engine": "tsx scripts/verify-engine.ts",
+    "mcp": "tsx mcp/server.ts",
+    "external-agent": "tsx examples/external-agent.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "@supabase/supabase-js": "^2.45.4",
+    "next": "^14.2.35",
+    "openai": "^4.67.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.0",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.2"
+  }
+}
